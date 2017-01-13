@@ -3,14 +3,9 @@ from __future__ import unicode_literals
 import os
 from django.utils.translation import ugettext_lazy as _
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
 SECRET_KEY = 'h$)9-2=%s)&p4vo!1g9coux%^7km38wi564qwf$9ck2ozt5ul7'
-
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -20,6 +15,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'timezone_field',
+    'loginas',
     'test_app',
 ]
 

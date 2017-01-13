@@ -44,7 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin):
             ('account')
         )
 
-
     email = models.EmailField(
         verbose_name=u'Электронная почта',
         max_length=255,
@@ -69,10 +68,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
-
-    # @property
-    # def is_staff(self):
-    #     return self.is_admin
 
     def save(self, *args, **kwargs):
         if not self.language and self.account:
