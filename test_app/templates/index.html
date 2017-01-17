@@ -1,10 +1,23 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{ user.account.title }}</title>
+    <title>{{ this_user.account.title }}</title>
 </head>
 <body>
-    <h1> {{ user.username }} </h1>
+    <h1> {% trans 'Здарова, ' %} {{ this_user.username }} </h1>
+    <hr>
+    <h2> {% trans 'Аккаунты и юзеры:' %} </h2>
+    <div style="padding-left: 25px;">
+        {% for account, userss in users.iteritems %}
+            <span><b>{{ account.title }}:</b></span>
+            <p style="padding-left: 25px; margin-top: 0; margin-bottom: 10px;">
+                {% for user in userss %}
+                    <span> {{ user }}</span> <br>
+                {% endfor %}
+            </p>
+        {% endfor %}
+    </div>
 </body>
 </html>

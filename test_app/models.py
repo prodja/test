@@ -36,14 +36,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'Пользователи'
         db_table = 'test_app_user'
 
-    class Extra:
-        search_fields = ['job_title', 'username']
-        field_name = 'id'
-        field_value = 'email'
-        qs_path = (
-            ('account')
-        )
-
     email = models.EmailField(
         verbose_name=u'Электронная почта',
         max_length=255,
@@ -66,8 +58,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     timezone = TimeZoneField(default='Europe/Moscow', verbose_name=_(u"Timezone"))
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    def __unicode__(self):
+        return self.get_full_name()
 
     def save(self, *args, **kwargs):
         if not self.language and self.account:
@@ -79,9 +74,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.username
-
-    def __unicode__(self):
-        return self.get_full_name()
 
     def has_perm(self, perm, obj=None):
         return True
